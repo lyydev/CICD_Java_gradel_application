@@ -42,11 +42,12 @@ pipeline{
             }
         }
 
-//        stage("Install dartree plugin"){
-//            steps{
-//                 sh 'helm plugin install https://github.com/datreeio/helm-datree'
-//            }
-//        }
+//  This stage only run on first time
+        stage("Install dartree plugin"){
+            steps{
+                 sh 'helm plugin install https://github.com/datreeio/helm-datree'
+            }
+        }
 
 
 
