@@ -93,9 +93,9 @@ pipeline{
         stage('Deploying application on k8s cluster') {
             steps {
                script{
-                   withCredentials([sshUserPrivateKey(credentialsId: 'k8smaster-connect', keyFileVariable: 'k8s_connect')]) {
+                   withCredentials([kubeconfigFile(credentialsId: 'k8sconn', variable: 'KUBECONFIG')]) {
                         dir('kubernetes/') {
-                          sh 'ssh -i "$k8s_connect" 35.231.7.26 -l jenkins "helm upgrade --install --set image.repository="104.196.124.19:8083/springapp" --set image.tag="${VERSION}" myjavaapp myapp/ "' 
+                          sh 'helm upgrade --install --set image.repository="35.207.23.98:8083/springapp" --set image.tag="${VERSION}" myjavaapp myapp/ ' 
                         }
                     }
                }
